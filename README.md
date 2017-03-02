@@ -68,6 +68,9 @@ public class iOSInitializer : IPlatformInitializer
 
 https://github.com/muak/PanPinchSample
 
+**movie**
+https://twitter.com/muak_x/status/837266085405573120
+
 ## API Usage
 
 ### Get EditableImage
