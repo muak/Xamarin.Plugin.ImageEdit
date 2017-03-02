@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+	<metadata minClientVersion="2.8.3">
+		<id>Xamarin.Plugin.ImageEdit</id>
+		<version>0.0.1</version>
+		<title>Image Edit Plugin for Xamarin</title>
+		<authors>kamu</authors>
+		<owners>kamu</owners>
+		<licenseUrl/>
+		<projectUrl/>
+		<!--Default Icon, a template can be found:  https://raw.githubusercontent.com/jamesmontemagno/Xamarin-Templates/master/Plugins-Templates/icons/plugin_icon.png-->
+		<iconUrl>https://raw.githubusercontent.com/jamesmontemagno/Xamarin-Templates/master/Plugins-Templates/icons/plugin_icon_nuget.png</iconUrl>
+
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>
+         This plugin will enable you to manipulate(resize,crop,rotate) a image(png,jpg).
+		</description>
+		<summary></summary>
+		<tags>PCL Plugin Xamarin.Forms Xamarin.Android Xamarin.iOS Image Edit Resize Rotate Crop Scale Clip Bitmap jpeg png</tags>
+		<language>en-US</language>
+
+		<dependencies>
+			<group targetFramework="net">
+			</group>
+			<group targetFramework="win">
+			</group>
+			<group targetFramework="wp">
+			</group>
+			<group targetFramework="wpa">
+			</group>
+			<group targetFramework="MonoAndroid">
+			</group>
+			<group targetFramework="Xamarin.iOS10">
+			</group>
+			<group targetFramework="Xamarin.Mac20">
+			</group>
+			<group targetFramework="portable-net45+win+wpa81+wp80">
+			</group>
+			<group targetFramework="uap">
+			</group>
+			<group targetFramework="dotnet">
+			</group>
+		</dependencies>
+	</metadata>
+	<files>
+		<!--Core-->
+		<file src="../ImageEdit/Plugin.ImageEdit/bin/Release/Plugin.ImageEdit.dll" target="lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.ImageEdit.dll" />
+		<file src="../ImageEdit/Plugin.ImageEdit/bin/Release/Plugin.ImageEdit.xml" target="lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.ImageEdit.xml" />
+		<file src="../ImageEdit/Plugin.ImageEdit/bin/Release/Plugin.ImageEdit.pdb" target="lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.ImageEdit.pdb" />
+		<file src="../ImageEdit/Plugin.ImageEdit.Abstractions/bin/Release/Plugin.ImageEdit.Abstractions.dll" target="lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.ImageEdit.Abstractions.dll" />
+		<file src="../ImageEdit/Plugin.ImageEdit.Abstractions/bin/Release/Plugin.ImageEdit.Abstractions.xml" target="lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.ImageEdit.Abstractions.xml" />
+		<file src="../ImageEdit/Plugin.ImageEdit.Abstractions/bin/Release/Plugin.ImageEdit.Abstractions.pdb" target="lib/portable-net45+wp8+wpa81+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10+UAP10/Plugin.ImageEdit.Abstractions.pdb" />
+
+		<!--dotnet-->
+		<file src="../ImageEdit/Plugin.ImageEdit/bin/Release/Plugin.ImageEdit.dll" target="lib/dotnet/Plugin.ImageEdit.dll" />
+		<file src="../ImageEdit/Plugin.ImageEdit/bin/Release/Plugin.ImageEdit.xml" target="lib/dotnet/Plugin.ImageEdit.xml" />
+		<file src="../ImageEdit/Plugin.ImageEdit/bin/Release/Plugin.ImageEdit.pdb" target="lib/dotnet/Plugin.ImageEdit.pdb" />
+		<file src="../ImageEdit/Plugin.ImageEdit.Abstractions/bin/Release/Plugin.ImageEdit.Abstractions.dll" target="lib/dotnet/Plugin.ImageEdit.Abstractions.dll" />
+		<file src="../ImageEdit/Plugin.ImageEdit.Abstractions/bin/Release/Plugin.ImageEdit.Abstractions.xml" target="lib/dotnet/Plugin.ImageEdit.Abstractions.xml" />
+		<file src="../ImageEdit/Plugin.ImageEdit.Abstractions/bin/Release/Plugin.ImageEdit.Abstractions.pdb" target="lib/dotnet/Plugin.ImageEdit.Abstractions.pdb" />
+
+		<!--Win Phone Silverlight-->
+		<file src="../ImageEdit/Plugin.ImageEdit.WindowsPhone8/bin/Release/Plugin.ImageEdit.dll" target="lib/wp8/Plugin.ImageEdit.dll" />
+		<file src="../ImageEdit/Plugin.ImageEdit.WindowsPhone8/bin/Release/Plugin.ImageEdit.xml" target="lib/wp8/Plugin.ImageEdit.xml" />
+		<file src="../ImageEdit/Plugin.ImageEdit.WindowsPhone8/bin/Release/Plugin.ImageEdit.pdb" target="lib/wp8/Plugin.ImageEdit.pdb" />
+		<file src="../ImageEdit/Plugin.ImageEdit.Abstractions/bin/Release/Plugin.ImageEdit.Abstractions.dll" target="lib/wp8/Plugin.ImageEdit.Abstractions.dll" />
+		<file src="../ImageEdit/Plugin.ImageEdit.Abstractions/bin/Release/Plugin.ImageEdit.Abstractions.xml" target="lib/wp8/Plugin.ImageEdit.Abstractions.xml" />
+		<file src="../ImageEdit/Plugin.ImageEdit.Abstractions/bin/Release/Plugin.ImageEdit.Abstractions.pdb" target="lib/wp8/Plugin.ImageEdit.Abstractions.pdb" />
+
+		<!--Win Phone 81-->
+		<file src="../ImageEdit/Plugin.ImageEdit.WindowsPhone81/bin/Release/Plugin.ImageEdit.dll" target="lib/wpa81/Plugin.ImageEdit.dll" />
+		<file src="../ImageEdit/Plugin.ImageEdit.WindowsPhone81/bin/Release/Plugin.ImageEdit.xml" target="lib/wpa81/Plugin.ImageEdit.xml" />
+		<file src="../ImageEdit/Plugin.ImageEdit.WindowsPhone81/bin/Release/Plugin.ImageEdit.pdb" target="lib/wpa81/Plugin.ImageEdit.pdb" />
+		<file src="../ImageEdit/Plugin.ImageEdit.Abstractions/bin/Release/Plugin.ImageEdit.Abstractions.dll" target="lib/wpa81/Plugin.ImageEdit.Abstractions.dll" />
+		<file src="../ImageEdit/Plugin.ImageEdit.Abstractions/bin/Release/Plugin.ImageEdit.Abstractions.xml" target="lib/wpa81/Plugin.ImageEdit.Abstractions.xml" />
+		<file src="../ImageEdit/Plugin.ImageEdit.Abstractions/bin/Release/Plugin.ImageEdit.Abstractions.pdb" target="lib/wpa81/Plugin.ImageEdit.Abstractions.pdb" />
+
+		<!--WinStore-->
+		<file src="../ImageEdit/Plugin.ImageEdit.WindowsStore/bin/Release/Plugin.ImageEdit.dll" target="lib/win8/Plugin.ImageEdit.dll" />
+		<file src="../ImageEdit/Plugin.ImageEdit.WindowsStore/bin/Release/Plugin.ImageEdit.xml" target="lib/win8/Plugin.ImageEdit.xml" />
+		<file src="../ImageEdit/Plugin.ImageEdit.WindowsStore/bin/Release/Plugin.ImageEdit.pdb" target="lib/win8/Plugin.ImageEdit.pdb" />
+		<file src="../ImageEdit/Plugin.ImageEdit.Abstractions/bin/Release/Plugin.ImageEdit.Abstractions.dll" target="lib/win8/Plugin.ImageEdit.Abstractions.dll" />
+		<file src="../ImageEdit/Plugin.ImageEdit.Abstractions/bin/Release/Plugin.ImageEdit.Abstractions.xml" target="lib/win8/Plugin.ImageEdit.Abstractions.xml" />
+		<file src="../ImageEdit/Plugin.ImageEdit.Abstractions/bin/Release/Plugin.ImageEdit.Abstractions.pdb" target="lib/win8/Plugin.ImageEdit.Abstractions.pdb" />
+
+		<!--Xamarin.Android-->
+		<file src="../ImageEdit/Plugin.ImageEdit.Android/bin/Release/Plugin.ImageEdit.dll" target="lib/MonoAndroid10/Plugin.ImageEdit.dll" />
+		<file src="../ImageEdit/Plugin.ImageEdit.Android/bin/Release/Plugin.ImageEdit.xml" target="lib/MonoAndroid10/Plugin.ImageEdit.xml" />
+		<file src="../ImageEdit/Plugin.ImageEdit.Android/bin/Release/Plugin.ImageEdit.pdb" target="lib/MonoAndroid10/Plugin.ImageEdit.pdb" />
+		<file src="../ImageEdit/Plugin.ImageEdit.Abstractions/bin/Release/Plugin.ImageEdit.Abstractions.dll" target="lib/MonoAndroid10/Plugin.ImageEdit.Abstractions.dll" />
+		<file src="../ImageEdit/Plugin.ImageEdit.Abstractions/bin/Release/Plugin.ImageEdit.Abstractions.xml" target="lib/MonoAndroid10/Plugin.ImageEdit.Abstractions.xml" />
+		<file src="../ImageEdit/Plugin.ImageEdit.Abstractions/bin/Release/Plugin.ImageEdit.Abstractions.pdb" target="lib/MonoAndroid10/Plugin.ImageEdit.Abstractions.pdb" />
+
+		<!--Xamarin.iOS-->
+		<file src="../ImageEdit/Plugin.ImageEdit.iOS/bin/iPhone/Release/Plugin.ImageEdit.dll" target="lib/Xamarin.iOS10/Plugin.ImageEdit.dll" />
+		<file src="../ImageEdit/Plugin.ImageEdit.iOS/bin/iPhone/Release/Plugin.ImageEdit.xml" target="lib/Xamarin.iOS10/Plugin.ImageEdit.xml" />
+		<file src="../ImageEdit/Plugin.ImageEdit.Abstractions/bin/Release/Plugin.ImageEdit.Abstractions.dll" target="lib/Xamarin.iOS10/Plugin.ImageEdit.Abstractions.dll" />
+		<file src="../ImageEdit/Plugin.ImageEdit.Abstractions/bin/Release/Plugin.ImageEdit.Abstractions.xml" target="lib/Xamarin.iOS10/Plugin.ImageEdit.Abstractions.xml" />
+
+		<!--uap-->
+		<file src="../ImageEdit/Plugin.ImageEdit.UWP/bin/Release/Plugin.ImageEdit.dll" target="lib/UAP10/Plugin.ImageEdit.dll" />
+		<file src="../ImageEdit/Plugin.ImageEdit.UWP/bin/Release/Plugin.ImageEdit.xml" target="lib/UAP10/Plugin.ImageEdit.xml" />
+		<file src="../ImageEdit/Plugin.ImageEdit.UWP/bin/Release/Plugin.ImageEdit.pdb" target="lib/UAP10/Plugin.ImageEdit.pdb" />
+		<file src="../ImageEdit/Plugin.ImageEdit.Abstractions/bin/Release/Plugin.ImageEdit.Abstractions.dll" target="lib/UAP10/Plugin.ImageEdit.Abstractions.dll" />
+		<file src="../ImageEdit/Plugin.ImageEdit.Abstractions/bin/Release/Plugin.ImageEdit.Abstractions.xml" target="lib/UAP10/Plugin.ImageEdit.Abstractions.xml" />
+		<file src="../ImageEdit/Plugin.ImageEdit.Abstractions/bin/Release/Plugin.ImageEdit.Abstractions.pdb" target="lib/UAP10/Plugin.ImageEdit.Abstractions.pdb" />
+
+		<!--Xamarin.Mac
+		<file src="../ImageEdit/Plugin.ImageEdit.Mac/bin/iPhone/Release/Plugin.ImageEdit.dll" target="lib/Xamarin.Mac20/Plugin.ImageEdit.dll" />
+		<file src="../ImageEdit/Plugin.ImageEdit.Mac/bin/iPhone/Release/Plugin.ImageEdit.xml" target="lib/Xamarin.Mac20/Plugin.ImageEdit.xml" />
+		<file src="../ImageEdit/Plugin.ImageEdit.Abstractions/bin/Release/Plugin.ImageEdit.Abstractions.dll" target="lib/Xamarin.Mac20/Plugin.ImageEdit.Abstractions.dll" />
+		<file src="../ImageEdit/Plugin.ImageEdit.Abstractions/bin/Release/Plugin.ImageEdit.Abstractions.xml" target="lib/Xamarin.Mac20/Plugin.ImageEdit.Abstractions.xml" />
+        -->
+	</files>
+</package>
