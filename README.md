@@ -22,7 +22,9 @@ Install-Package Xamarin.Plugin.ImageEdit -Pre
 
 ## Usage example
 
-Image crop and resize and rotate and get png data.
+Image crop and rotate　and resize and get png data.
+
+### Using as plugin
 
 ```cs
 using (var image = await CrossImageEdit.Current.CreateImageAsync(imageByteArray)) {
@@ -34,6 +36,37 @@ using (var image = await CrossImageEdit.Current.CreateImageAsync(imageByteArray)
 	);
 }
 ```
+
+### Using as IPlatformInitializer(prism.unity.forms)
+
+```cs
+//View model constructor
+public ViewModel(IImageEdit imageEdit){
+
+	using (var image = await imageEdit.CreateImageAsync(imageByteArray)) {
+		var croped = await Task.Run(() =>
+				image.Crop(10, 20, 250, 100)
+					 .Rotate(180)
+					 .Resize(100, 0)
+					 .ToPng()
+		);
+	}
+}
+
+
+//on platform
+public class iOSInitializer : IPlatformInitializer
+{
+	public void RegisterTypes(IUnityContainer container)
+	{
+		container.RegisterType<IImageEdit,ImageEdit>();
+	}
+}
+```
+
+### Sample project
+
+https://github.com/muak/PanPinchSample
 
 ## API Usage
 
