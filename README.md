@@ -90,8 +90,8 @@ Get image ARGB infomation.
 for example when 0xFF00F090
 
 |A|R|G|B|
-| -- | :---: | :--: | :--: |
-|FF|00|F0 |90|
+| -- | -- | -- | -- |
+|FF|00|F0|90|
 
 
 ```cs
