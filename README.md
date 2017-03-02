@@ -22,7 +22,7 @@ Install-Package Xamarin.Plugin.ImageEdit -Pre
 
 ## Usage example
 
-Image crop and rotate　and resize and get png data.
+Image crop and rotate and resize and get png data.
 
 ### Using as plugin
 
