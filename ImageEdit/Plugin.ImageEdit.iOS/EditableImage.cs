@@ -8,7 +8,7 @@ using UIKit;
 
 namespace Plugin.ImageEdit
 {
-    public class EditableImage:IEditableImage
+    public class EditableImage : IEditableImage
     {
         public int Height { get; private set; }
         public int Width { get; private set; }
@@ -140,6 +140,22 @@ namespace Plugin.ImageEdit
 
         public byte[] ToJpeg(float quality = 80)
         {
+            //If the image orientation is not up,reset orientation.
+            if (_image.Orientation != UIImageOrientation.Up) {
+                var rect = new CGRect(0, 0, _image.Size.Width, _image.Size.Height);
+                UIGraphics.BeginImageContext(rect.Size);
+
+                _image.Draw(rect);
+
+                var newImage = UIGraphics.GetImageFromCurrentImageContext();
+               
+                UIGraphics.EndImageContext();
+
+                using (var data = newImage.AsJPEG(quality)) {
+                    newImage.Dispose();
+                    return data.ToArray();
+                }
+            }
             using (var data = _image.AsJPEG(quality)) {
                 return data.ToArray();
             }
@@ -170,6 +186,13 @@ namespace Plugin.ImageEdit
 
         int[] GetBitmapPixels(NSData data)
         {
+            var alphaInfo = _image.CGImage.AlphaInfo;
+            var adjustOrder = 2;
+            if (alphaInfo == CGImageAlphaInfo.First ||
+                alphaInfo == CGImageAlphaInfo.PremultipliedFirst) {
+                adjustOrder = 0;
+            }
+
             var bytesPerPixel = _image.CGImage.BitsPerPixel / 8;
 
             // Order by ARGB
@@ -180,9 +203,10 @@ namespace Plugin.ImageEdit
                     var addr = (i * Width + j) * bytesPerPixel;
                     pixels[idx++] =
                         (data[addr + 3] << 24) |
-                        (data[addr] << 16) |
+                        (data[addr + 2 - adjustOrder] << 16) |
                         (data[addr + 1] << 8) |
-                        (data[addr + 2]);
+                        (data[addr + adjustOrder]);
+
                 }
             }
 
