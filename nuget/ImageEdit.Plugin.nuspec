@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata>
 		<id>Xamarin.Plugin.ImageEdit</id>
-		<version>0.0.1-pre</version>
+		<version>0.0.4-pre</version>
 		<title>Image Edit Plugin for Xamarin</title>
 		<authors>kamu</authors>
 		<owners>kamu</owners>
@@ -18,6 +18,11 @@
 		<summary></summary>
 		<tags>PCL Plugin Xamarin.Forms Xamarin.Android Xamarin.iOS Image Edit Resize Rotate Crop Scale Clip Bitmap jpeg png</tags>
 		<language>en-US</language>
+		<releaseNotes>
+		[iOS]
+		Changed to reset image orientation when it creates EditableImage.
+		Fixed ToArgbPixels.
+		</releaseNotes>
 
 		<dependencies>
 			<group targetFramework="net">

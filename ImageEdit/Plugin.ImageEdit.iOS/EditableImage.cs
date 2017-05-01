@@ -19,6 +19,19 @@ namespace Plugin.ImageEdit
         public EditableImage(byte[] bin)
         {
             _image = new UIImage(NSData.FromArray(bin));
+            //If the image orientation is not up,reset orientation.
+            if (_image.Orientation != UIImageOrientation.Up) {
+                var rect = new CGRect(0, 0, _image.Size.Width, _image.Size.Height);
+                UIGraphics.BeginImageContext(rect.Size);
+
+                _image.Draw(rect);
+
+                var newImage = UIGraphics.GetImageFromCurrentImageContext();
+
+                UIGraphics.EndImageContext();
+                _image.Dispose();
+                _image = newImage;
+            }
             UpdateSize();
         }
 
@@ -140,22 +153,6 @@ namespace Plugin.ImageEdit
 
         public byte[] ToJpeg(float quality = 80)
         {
-            //If the image orientation is not up,reset orientation.
-            if (_image.Orientation != UIImageOrientation.Up) {
-                var rect = new CGRect(0, 0, _image.Size.Width, _image.Size.Height);
-                UIGraphics.BeginImageContext(rect.Size);
-
-                _image.Draw(rect);
-
-                var newImage = UIGraphics.GetImageFromCurrentImageContext();
-               
-                UIGraphics.EndImageContext();
-
-                using (var data = newImage.AsJPEG(quality)) {
-                    newImage.Dispose();
-                    return data.ToArray();
-                }
-            }
             using (var data = _image.AsJPEG(quality)) {
                 return data.ToArray();
             }
@@ -175,18 +172,17 @@ namespace Plugin.ImageEdit
                 using (var wkimage = new UIImage(NSData.FromArray(_image.AsPNG().ToArray())))
                 using (var data = wkimage.CGImage.DataProvider.CopyData()) {
                     _needToUpdateData = false;
-                    return GetBitmapPixels(data);
+                    return GetBitmapPixels(data,wkimage.CGImage.AlphaInfo);
                 }
             }
 
             using (var data = _image.CGImage.DataProvider.CopyData()) {
-                return GetBitmapPixels(data);
+                return GetBitmapPixels(data,_image.CGImage.AlphaInfo);
             }
         }
 
-        int[] GetBitmapPixels(NSData data)
-        {
-            var alphaInfo = _image.CGImage.AlphaInfo;
+        int[] GetBitmapPixels(NSData data,CGImageAlphaInfo alphaInfo)
+        {          
             var adjustOrder = 2;
             if (alphaInfo == CGImageAlphaInfo.First ||
                 alphaInfo == CGImageAlphaInfo.PremultipliedFirst) {
@@ -206,9 +202,9 @@ namespace Plugin.ImageEdit
                         (data[addr + 2 - adjustOrder] << 16) |
                         (data[addr + 1] << 8) |
                         (data[addr + adjustOrder]);
-
                 }
             }
+
 
             return pixels;
         }
