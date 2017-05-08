@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata>
 		<id>Xamarin.Plugin.ImageEdit</id>
-		<version>0.0.4-pre</version>
+		<version>0.0.4</version>
 		<title>Image Edit Plugin for Xamarin</title>
 		<authors>kamu</authors>
 		<owners>kamu</owners>
