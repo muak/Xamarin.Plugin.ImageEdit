@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms" 
+	prism:ViewModelLocator.AutowireViewModel="True" 
+	BackgroundColor="White"
+	x:Class="Sample.Views.MainPage" Title="MainPage">
+	<StackLayout>
+		<StackLayout Orientation="Horizontal" VerticalOptions="Start" >
+			<Label Text="Pick"><Label.GestureRecognizers>
+					<TapGestureRecognizer Command="{Binding PickCommand}" />
+			</Label.GestureRecognizers></Label> 
+			<Label Text="ToMonochrome"><Label.GestureRecognizers>
+					<TapGestureRecognizer Command="{Binding ToMonochromeCommand}" />
+			</Label.GestureRecognizers></Label> 
+		</StackLayout>
+		<Image Source="{Binding Image}" Aspect="AspectFit" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+	</StackLayout>
+</ContentPage>

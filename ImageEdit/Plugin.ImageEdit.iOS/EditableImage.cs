@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CoreGraphics;
+using CoreImage;
 using Foundation;
 using Plugin.ImageEdit.Abstractions;
 using UIKit;
@@ -148,6 +149,29 @@ namespace Plugin.ImageEdit
 
 
             UpdateSize();
+            return this;
+        }
+
+        public IEditableImage ToMonochrome()
+        {
+            var mono = new CIColorMonochrome
+            {
+                Color = CIColor.FromRgb(1, 1, 1),
+                Intensity = 1.0f,
+                Image = CIImage.FromCGImage(_image.CGImage)
+            };
+            CIImage output = mono.OutputImage;
+            var context = CIContext.FromOptions(null);
+            var renderedImage = context.CreateCGImage(output, output.Extent);
+            var monoImage = UIImage.FromImage(renderedImage,_image.CurrentScale,_image.Orientation);
+
+            _image.Dispose();
+            _image = monoImage;
+
+            monoImage = null;
+            renderedImage.Dispose();
+            renderedImage = null;
+
             return this;
         }
 

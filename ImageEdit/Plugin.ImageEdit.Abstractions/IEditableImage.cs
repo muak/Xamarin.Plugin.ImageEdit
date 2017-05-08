@@ -41,6 +41,8 @@ namespace Plugin.ImageEdit.Abstractions
         /// <param name="degree">degree(0-360)</param>
         IEditableImage Rotate(float degree);
 
+        IEditableImage ToMonochrome();
+
         /// <summary>
         /// To Jpeg byte array
         /// </summary>
