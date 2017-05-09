@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CoreGraphics;
+using CoreImage;
 using Foundation;
 using Plugin.ImageEdit.Abstractions;
 using UIKit;
@@ -71,6 +72,18 @@ namespace Plugin.ImageEdit
 
             UpdateSize();
             _needToUpdateData = true;
+
+            return this;
+        }
+
+        public IEditableImage Resize(int maxLongSideLength)
+        {
+            if (Width >= Height) {
+                Resize(maxLongSideLength, 0);
+            }
+            else {
+                Resize(0, maxLongSideLength);
+            }
 
             return this;
         }
@@ -151,6 +164,28 @@ namespace Plugin.ImageEdit
             return this;
         }
 
+        public IEditableImage ToMonochrome()
+        {
+            var mono = new CIColorMonochrome {
+                Color = CIColor.FromRgb(1, 1, 1),
+                Intensity = 1.0f,
+                Image = CIImage.FromCGImage(_image.CGImage)
+            };
+            CIImage output = mono.OutputImage;
+            var context = CIContext.FromOptions(null);
+            var renderedImage = context.CreateCGImage(output, output.Extent);
+            var monoImage = UIImage.FromImage(renderedImage, _image.CurrentScale, _image.Orientation);
+
+            _image.Dispose();
+            _image = monoImage;
+
+            monoImage = null;
+            renderedImage.Dispose();
+            renderedImage = null;
+
+            return this;
+        }
+
         public byte[] ToJpeg(float quality = 80)
         {
             using (var data = _image.AsJPEG(quality)) {
@@ -172,17 +207,17 @@ namespace Plugin.ImageEdit
                 using (var wkimage = new UIImage(NSData.FromArray(_image.AsPNG().ToArray())))
                 using (var data = wkimage.CGImage.DataProvider.CopyData()) {
                     _needToUpdateData = false;
-                    return GetBitmapPixels(data,wkimage.CGImage.AlphaInfo);
+                    return GetBitmapPixels(data, wkimage.CGImage.AlphaInfo);
                 }
             }
 
             using (var data = _image.CGImage.DataProvider.CopyData()) {
-                return GetBitmapPixels(data,_image.CGImage.AlphaInfo);
+                return GetBitmapPixels(data, _image.CGImage.AlphaInfo);
             }
         }
 
-        int[] GetBitmapPixels(NSData data,CGImageAlphaInfo alphaInfo)
-        {          
+        int[] GetBitmapPixels(NSData data, CGImageAlphaInfo alphaInfo)
+        {
             var adjustOrder = 2;
             if (alphaInfo == CGImageAlphaInfo.First ||
                 alphaInfo == CGImageAlphaInfo.PremultipliedFirst) {

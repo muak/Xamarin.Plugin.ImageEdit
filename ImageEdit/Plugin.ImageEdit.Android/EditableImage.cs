@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Android.Graphics;
 using Plugin.ImageEdit.Abstractions;
 
@@ -49,6 +50,18 @@ namespace Plugin.ImageEdit
             return this;
         }
 
+        public IEditableImage Resize(int maxLongSideLength)
+        {
+            if (Width >= Height) {
+                Resize(maxLongSideLength, 0);
+            }
+            else {
+                Resize(0, maxLongSideLength);
+            }
+
+            return this;
+        }
+
         public IEditableImage Crop(int x, int y, int width, int height)
         {
             var croped = Bitmap.CreateBitmap(_image, x, y, width, height);
@@ -74,6 +87,28 @@ namespace Plugin.ImageEdit
             rotated = null;
 
             UpdateSize();
+
+            return this;
+        }
+
+        public IEditableImage ToMonochrome()
+        {
+            Bitmap bmpMonochrome = Bitmap.CreateBitmap(_image.Width, _image.Height, Bitmap.Config.Rgb565);
+            Canvas canvas = new Canvas(bmpMonochrome);
+            ColorMatrix ma = new ColorMatrix();
+            ma.SetSaturation(0);
+            Paint paint = new Paint();
+            paint.SetColorFilter(new ColorMatrixColorFilter(ma));
+            canvas.DrawBitmap(_image, 0, 0, paint);
+
+            _image.Recycle();
+            _image.Dispose();
+            _image = bmpMonochrome;
+            bmpMonochrome = null;
+
+            canvas.Dispose();
+            ma.Dispose();
+            paint.Dispose();
 
             return this;
         }
@@ -114,5 +149,6 @@ namespace Plugin.ImageEdit
             Width = (int)_image.Width;
             Height = (int)_image.Height;
         }
+
     }
 }
