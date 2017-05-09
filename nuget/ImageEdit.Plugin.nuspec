@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata>
 		<id>Xamarin.Plugin.ImageEdit</id>
-		<version>0.0.4</version>
+		<version>0.0.5-pre</version>
 		<title>Image Edit Plugin for Xamarin</title>
 		<authors>kamu</authors>
 		<owners>kamu</owners>
@@ -13,15 +13,16 @@
 
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>
-         This plugin will enable you to manipulate(resize,crop,rotate) a image(png,jpg).
+         This plugin will enable you to manipulate(resize,crop,rotate,monochrome) a image(png,jpg).
 		</description>
 		<summary></summary>
-		<tags>PCL Plugin Xamarin.Forms Xamarin.Android Xamarin.iOS Image Edit Resize Rotate Crop Scale Clip Bitmap jpeg png</tags>
+		<tags>PCL Plugin Xamarin.Forms Xamarin.Android Xamarin.iOS Image Edit Resize Rotate Crop Scale Clip Bitmap jpeg png monochrome</tags>
 		<language>en-US</language>
 		<releaseNotes>
-		[iOS]
-		Changed to reset image orientation when it creates EditableImage.
-		Fixed ToArgbPixels.
+		[NewFeature]
+		ToMonochrome ... Image color convert to monochrome.
+		[Enhanced]
+		Resize ... new override that specify max length of long side.
 		</releaseNotes>
 
 		<dependencies>

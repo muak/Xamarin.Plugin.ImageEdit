@@ -25,6 +25,14 @@ namespace Plugin.ImageEdit.Abstractions
         IEditableImage Resize(int width, int height);
 
         /// <summary>
+        /// Resize
+        /// resize specifing max length of long side.the other side is auto length by aspect ratio.
+        /// </summary>
+        /// <returns>IEditableImage</returns>
+        /// <param name="maxLongSideLength">max length of long side</param>
+        IEditableImage Resize(int maxLongSideLength);
+
+        /// <summary>
         /// Crop
         /// </summary>
         /// <returns>IEditableImage</returns>
@@ -41,6 +49,10 @@ namespace Plugin.ImageEdit.Abstractions
         /// <param name="degree">degree(0-360)</param>
         IEditableImage Rotate(float degree);
 
+        /// <summary>
+        /// Convert to monochrome color
+        /// </summary>
+        /// <returns>IEditableImage</returns>
         IEditableImage ToMonochrome();
 
         /// <summary>

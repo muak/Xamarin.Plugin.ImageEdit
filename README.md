@@ -1,6 +1,6 @@
 # Image Edit Plugin for Xamarin
 
-This plugin will enable you to manipulate(resize,crop,rotate) a image(png,jpg).
+This plugin will enable you to manipulate(resize,crop,rotate) and filter(monochrome) a image(png,jpg).
 
 ### Setup
 
@@ -8,7 +8,7 @@ This plugin will enable you to manipulate(resize,crop,rotate) a image(png,jpg).
 * Install into your PCL project and Client projects.
 
 ```bash
-Install-Package Xamarin.Plugin.ImageEdit -Pre
+Install-Package Xamarin.Plugin.ImageEdit
 ```
 
 **Platform Support**
@@ -84,10 +84,12 @@ It is able to manipulate a image using this object.
 
 ```cs
 var width = 200;
-var height = 200;
+var height = 150;
 image.Resize(width, height);
 image.Resize(width, 0); //auto height
 image.Resize(0, height); //auto width
+
+image.Resize(50); //specify max length of long side. other side auto size.
 ```
 
 ### Crop
@@ -105,6 +107,14 @@ image.Crop(10, 10, 50, 50);
 ```cs
 var degree = 90; // 0-360;
 image.Rotate(degree);
+```
+
+### ToMonochrome
+
+The image will convert to monochrome.
+
+```cs
+image.ToMonochrome();
 ```
 
 ### ToPng
@@ -132,6 +142,11 @@ for example when 0xFF00F090
 
 ```cs
 var pixels = image.ToArgbPixels();
+
+var pixel = pixels[10];
+var r = pixel & 0x00FF0000 >> 16; //Get R
+var g = pixel & 0x0000FF00 >> 8;  //Get G
+var b = pixel & 0x000000FF;       //Get B
 ```
 
 ## License

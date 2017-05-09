@@ -13,6 +13,9 @@
 			<Label Text="ToMonochrome"><Label.GestureRecognizers>
 					<TapGestureRecognizer Command="{Binding ToMonochromeCommand}" />
 			</Label.GestureRecognizers></Label> 
+			<Label Text="Resize(maxlongside)"><Label.GestureRecognizers>
+					<TapGestureRecognizer Command="{Binding ResizeCommand}" />
+			</Label.GestureRecognizers></Label> 
 		</StackLayout>
 		<Image Source="{Binding Image}" Aspect="AspectFit" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
 	</StackLayout>

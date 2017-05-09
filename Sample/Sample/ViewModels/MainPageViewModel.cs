@@ -34,10 +34,21 @@ namespace Sample.ViewModels
 		public DelegateCommand ToMonochromeCommand {
 			get { return _ToMonochromeCommand = _ToMonochromeCommand ?? new DelegateCommand(async () => {
 				using(var image = await Plugin.ImageEdit.CrossImageEdit.Current.CreateImageAsync(_data)){
-					Image = ImageSource.FromStream(()=>new MemoryStream(image.ToMonochrome().ToJpeg(100)));
+					var data = image.ToMonochrome().ToJpeg(100);
+					Image = ImageSource.FromStream(()=>new MemoryStream(data));
 				}
 			}); }
 		}
+
+        private DelegateCommand _ResizeCommand;
+        public DelegateCommand ResizeCommand {
+            get { return _ResizeCommand = _ResizeCommand ?? new DelegateCommand(async() => {
+                using(var image = await Plugin.ImageEdit.CrossImageEdit.Current.CreateImageAsync(_data)){
+                    var data = image.Resize(150).ToJpeg(100);
+                    Image = ImageSource.FromStream(()=>new MemoryStream(data));
+                }
+            }); }
+        }
 
 		public MainPageViewModel()
 		{

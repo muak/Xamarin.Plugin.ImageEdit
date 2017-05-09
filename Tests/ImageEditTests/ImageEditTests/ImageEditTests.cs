@@ -22,6 +22,9 @@ namespace Tests
         public byte[] JpegData { get; set; }
         public byte[] ShrinkingData { get; set; }
         public byte[] ExpansionData { get; set; }
+        public byte[] ColorsData { get; set; }
+        public byte[] RectH { get; set; }
+        public byte[] RectV { get; set; }
 
         public MainFixture()
         {
@@ -30,12 +33,18 @@ namespace Tests
             JpegData = UIImage.FromBundle("pattern1.jpg").AsJPEG().ToArray();
             ShrinkingData = UIImage.FromBundle("shrinking.png").AsPNG().ToArray();
             ExpansionData = UIImage.FromBundle("expansion.png").AsPNG().ToArray();
+            ColorsData = UIImage.FromBundle("colors.png").AsPNG().ToArray();
+            RectH = UIImage.FromBundle("recth.png").AsPNG().ToArray();
+            RectV = UIImage.FromBundle("rectv.png").AsPNG().ToArray();
 #endif
 #if __ANDROID__
             PngData = Getbytes("pattern1");
             JpegData = Getbytes("patternjpg");
             ShrinkingData = Getbytes("shrinking");
             ExpansionData = Getbytes("expansion");
+            ColorsData = Getbytes("colors");
+            RectH = Getbytes("recth");
+            RectV = Getbytes("rectv");
 #endif
 
         }
@@ -267,6 +276,43 @@ namespace Tests
                             Assert.InRange((uint)pixels[i * image.Width + j], 0xFFBFBFBF, 0xFFFFFFFF);
                         }
                     }
+                }
+            }
+        }
+
+        [Fact]
+        public async Task ResizeSpecifyLongSideTest()
+        {
+            using (var image = await _editor.CreateImageAsync(_main.RectH)) {
+                image.Resize(5);
+
+                Assert.Equal(5,image.Width);
+                Assert.Equal(3,image.Height);
+            }
+
+            using (var image = await _editor.CreateImageAsync(_main.RectV)) {
+                image.Resize(5);
+
+                Assert.Equal(3,image.Width);
+                Assert.Equal(5,image.Height);
+            }
+        }
+
+        [Fact]
+        public async Task ToMonochromeTest()
+        {
+            using (var image = await _editor.CreateImageAsync(_main.ColorsData)) {
+                var pixels = image.ToMonochrome().ToArgbPixels();
+
+                SavePhoto(image);
+
+                foreach (var pixel in pixels) {
+                    var r = pixel & 0x00FF0000 >> 16;
+                    var g = pixel & 0x0000FF00 >> 8;
+                    var b = pixel & 0x000000FF;
+
+                    Assert.InRange(r - g, -10, 10);
+                    Assert.InRange(r - b, -10, 10);
                 }
             }
         }
