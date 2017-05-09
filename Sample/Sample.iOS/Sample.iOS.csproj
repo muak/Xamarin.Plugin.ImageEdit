@@ -115,19 +115,17 @@
     <Reference Include="Plugin.Media">
       <HintPath>..\packages\Xam.Plugin.Media.2.6.2\lib\Xamarin.iOS10\Plugin.Media.dll</HintPath>
     </Reference>
+    <Reference Include="Plugin.ImageEdit.Abstractions">
+      <HintPath>..\packages\Xamarin.Plugin.ImageEdit.0.0.6-pre\lib\Xamarin.iOS10\Plugin.ImageEdit.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.ImageEdit">
+      <HintPath>..\packages\Xamarin.Plugin.ImageEdit.0.0.6-pre\lib\Xamarin.iOS10\Plugin.ImageEdit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sample\Sample.csproj">
       <Project>{2DB58246-77D5-4190-B0A0-F125B538309B}</Project>
       <Name>Sample</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ImageEdit\Plugin.ImageEdit.Abstractions\Plugin.ImageEdit.Abstractions.csproj">
-      <Project>{6EDB0588-FFC5-4EF5-8A99-9E241D0F878D}</Project>
-      <Name>Plugin.ImageEdit.Abstractions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ImageEdit\Plugin.ImageEdit.iOS\Plugin.ImageEdit.iOS.csproj">
-      <Project>{2882AEEB-D4CD-4EB9-8A6C-6653B33681F0}</Project>
-      <Name>Plugin.ImageEdit.iOS</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

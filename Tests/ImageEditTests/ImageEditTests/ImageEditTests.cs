@@ -8,10 +8,12 @@ using Xamarin.Forms.Platform.Android;
 using Android.Graphics;
 using System.Security.AccessControl;
 using Java.IO;
+using System.IO;
 #endif
 #if __IOS__
 using UIKit;
 using Foundation;
+using System.IO;
 #endif
 
 namespace Tests
@@ -103,6 +105,14 @@ namespace Tests
             }
             using (var image = await _editor.CreateImageAsync(_main.JpegData)) {
                 CreateCompare(image, false);
+            }
+
+            var stream = new MemoryStream(_main.PngData);
+            using (var image = await _editor.CreateImageAsync(stream)) {
+                CreateCompare(image);
+                Assert.Throws<ObjectDisposedException>(() => {
+                    var data = stream.Length;
+                });
             }
         }
 

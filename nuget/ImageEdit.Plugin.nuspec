@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata>
 		<id>Xamarin.Plugin.ImageEdit</id>
-		<version>0.0.5-pre</version>
+		<version>0.0.6-pre</version>
 		<title>Image Edit Plugin for Xamarin</title>
 		<authors>kamu</authors>
 		<owners>kamu</owners>
@@ -22,6 +22,7 @@
 		[NewFeature]
 		ToMonochrome ... Image color convert to monochrome.
 		[Enhanced]
+		Create ... new override that specify stream.
 		Resize ... new override that specify max length of long side.
 		</releaseNotes>
 

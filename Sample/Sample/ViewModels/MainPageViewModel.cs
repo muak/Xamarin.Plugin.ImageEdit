@@ -19,21 +19,20 @@ namespace Sample.ViewModels
 			set { SetProperty(ref _Image, value); }
 		}
 
-		private byte[] _data;
+		private MediaFile _data;
 
 		private DelegateCommand _PickCommand;
 		public DelegateCommand PickCommand { 
 		    get { return _PickCommand = _PickCommand ?? new DelegateCommand(async()=>{
-				var file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync();
-				_data = await MediaFileToBytes(file);
-				Image = ImageSource.FromStream(()=>file.GetStream());
+				_data = await Plugin.Media.CrossMedia.Current.PickPhotoAsync();
+				Image = ImageSource.FromStream(()=>_data.GetStream());
 			}); } 
 		}
 
 		private DelegateCommand _ToMonochromeCommand;
 		public DelegateCommand ToMonochromeCommand {
 			get { return _ToMonochromeCommand = _ToMonochromeCommand ?? new DelegateCommand(async () => {
-				using(var image = await Plugin.ImageEdit.CrossImageEdit.Current.CreateImageAsync(_data)){
+				using(var image = await Plugin.ImageEdit.CrossImageEdit.Current.CreateImageAsync(_data.GetStream())){
 					var data = image.ToMonochrome().ToJpeg(100);
 					Image = ImageSource.FromStream(()=>new MemoryStream(data));
 				}
@@ -43,7 +42,7 @@ namespace Sample.ViewModels
         private DelegateCommand _ResizeCommand;
         public DelegateCommand ResizeCommand {
             get { return _ResizeCommand = _ResizeCommand ?? new DelegateCommand(async() => {
-                using(var image = await Plugin.ImageEdit.CrossImageEdit.Current.CreateImageAsync(_data)){
+                using(var image = await Plugin.ImageEdit.CrossImageEdit.Current.CreateImageAsync(_data.GetStream())){
                     var data = image.Resize(150).ToJpeg(100);
                     Image = ImageSource.FromStream(()=>new MemoryStream(data));
                 }
@@ -54,19 +53,19 @@ namespace Sample.ViewModels
 		{
 		}
 
-		async Task<byte[]> MediaFileToBytes(MediaFile file)
-		{
-			using (var ms = new MemoryStream()) {
-				var buff = new byte[16 * 1024];
-				int read;
-				var stream = file.GetStream();
-				while ((read = await stream.ReadAsync(buff, 0, buff.Length)) > 0) {
-					await ms.WriteAsync(buff, 0, read);
-				}
+		//async Task<byte[]> MediaFileToBytes(MediaFile file)
+		//{
+		//	using (var ms = new MemoryStream()) {
+		//		var buff = new byte[16 * 1024];
+		//		int read;
+		//		var stream = file.GetStream();
+		//		while ((read = await stream.ReadAsync(buff, 0, buff.Length)) > 0) {
+		//			await ms.WriteAsync(buff, 0, read);
+		//		}
 
-				return ms.ToArray();
-			}
-		}
+		//		return ms.ToArray();
+		//	}
+		//}
 
 		public void OnNavigatedFrom(NavigationParameters parameters)
 		{
