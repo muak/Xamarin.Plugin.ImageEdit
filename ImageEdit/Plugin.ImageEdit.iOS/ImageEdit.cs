@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using Plugin.ImageEdit.Abstractions;
+using System.IO;
 
 namespace Plugin.ImageEdit
 {
@@ -16,6 +17,11 @@ namespace Plugin.ImageEdit
         public async Task<IEditableImage> CreateImageAsync(byte[] imageArray)
         {
             return await Task.Run(() => CreateImage(imageArray));
+        }
+
+        public async Task<IEditableImage> CreateImageAsync(Stream stream)
+        {
+            return await CreateImageAsync(await Utilities.StreamToBytes(stream));
         }
     }
 }

@@ -76,7 +76,12 @@ https://twitter.com/muak_x/status/837266085405573120
 ### Get EditableImage
 
 ```cs
+//from byte[]
 var image = await CrossImageEdit.Current.CreateImageAsync(imageByteArray);
+```
+```cs
+//from stream
+var image = await CrossImageEdit.Current.CreateImageAsync(imageStream);
 ```
 It is able to manipulate a image using this object.
 

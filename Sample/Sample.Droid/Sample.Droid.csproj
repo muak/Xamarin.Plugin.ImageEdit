@@ -112,19 +112,17 @@
     <Reference Include="Plugin.Media">
       <HintPath>..\packages\Xam.Plugin.Media.2.6.2\lib\MonoAndroid10\Plugin.Media.dll</HintPath>
     </Reference>
+    <Reference Include="Plugin.ImageEdit.Abstractions">
+      <HintPath>..\packages\Xamarin.Plugin.ImageEdit.0.0.6-pre\lib\MonoAndroid10\Plugin.ImageEdit.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.ImageEdit">
+      <HintPath>..\packages\Xamarin.Plugin.ImageEdit.0.0.6-pre\lib\MonoAndroid10\Plugin.ImageEdit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sample\Sample.csproj">
       <Project>{2DB58246-77D5-4190-B0A0-F125B538309B}</Project>
       <Name>Sample</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ImageEdit\Plugin.ImageEdit.Android\Plugin.ImageEdit.Android.csproj">
-      <Project>{56A56F17-7DE1-4CA1-9617-BF32E971AC84}</Project>
-      <Name>Plugin.ImageEdit.Android</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ImageEdit\Plugin.ImageEdit.Abstractions\Plugin.ImageEdit.Abstractions.csproj">
-      <Project>{6EDB0588-FFC5-4EF5-8A99-9E241D0F878D}</Project>
-      <Name>Plugin.ImageEdit.Abstractions</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
