@@ -73,5 +73,7 @@ namespace Plugin.ImageEdit.Abstractions
         /// </summary>
         /// <returns>The ARGB pixels.</returns>
         int[] ToArgbPixels();
+
+        object GetNativeImage();
     }
 }

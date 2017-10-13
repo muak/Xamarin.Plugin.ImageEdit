@@ -44,5 +44,13 @@
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Save Pictures</string>
+	<key>kTCCServiceMediaLibrary</key>
+	<string>Save Pictures</string>
+	<key>NSCameraUsageDescription</key>
+	<string>dsfsdf</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>sdfsdfsadfsadf</string>
+	<key>NSContactsUsageDescription</key>
+	<string>sdfsdf</string>
 </dict>
 </plist>
