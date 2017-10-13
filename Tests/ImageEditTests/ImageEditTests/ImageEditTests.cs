@@ -38,6 +38,7 @@ namespace Tests
             ColorsData = UIImage.FromBundle("colors.png").AsPNG().ToArray();
             RectH = UIImage.FromBundle("recth.png").AsPNG().ToArray();
             RectV = UIImage.FromBundle("rectv.png").AsPNG().ToArray();
+
 #endif
 #if __ANDROID__
             PngData = Getbytes("pattern1");
@@ -296,15 +297,15 @@ namespace Tests
             using (var image = await _editor.CreateImageAsync(_main.RectH)) {
                 image.Resize(5);
 
-                Assert.Equal(5,image.Width);
-                Assert.Equal(3,image.Height);
+                Assert.Equal(5, image.Width);
+                Assert.Equal(3, image.Height);
             }
 
             using (var image = await _editor.CreateImageAsync(_main.RectV)) {
                 image.Resize(5);
 
-                Assert.Equal(3,image.Width);
-                Assert.Equal(5,image.Height);
+                Assert.Equal(3, image.Width);
+                Assert.Equal(5, image.Height);
             }
         }
 
@@ -327,15 +328,38 @@ namespace Tests
             }
         }
 
+        [Fact]
+        public async Task GetNativeObjectTest()
+        {
+            using (var image = await _editor.CreateImageAsync(_main.PngData)) {
+                var obj = image.GetNativeImage();
+                var pArray = image.ToPng();
+#if __IOS__
+                var nimage = obj as UIImage;
+                var nArray = nimage.AsPNG().ToArray();
+
+                Assert.Equal(nArray,pArray);
+#elif __ANDROID__
+                var nimage = obj as Bitmap;
+                using (var ms = new MemoryStream()) {
+                    nimage.Compress(Bitmap.CompressFormat.Png, 100, ms);
+                    var nArray = ms.ToArray();
+                    Assert.Equal(nArray, pArray);
+                }
+#endif
+            }
+        }
+
         private void SavePhoto(IEditableImage image)
         {
 #if __IOS__
-            var tmp = new UIImage(NSData.FromArray(image.ToPng()));
-            tmp.BeginInvokeOnMainThread(() => {
-                tmp.SaveToPhotosAlbum(new UIImage.SaveStatus((UIImage affs, NSError error) => {
-                    ;
-                }));
-            });
+            //On iOS11 following code crashed 
+            //var tmp = new UIImage(NSData.FromArray(image.ToPng()));
+            //tmp.BeginInvokeOnMainThread(() => {
+            //    tmp.SaveToPhotosAlbum(new UIImage.SaveStatus((UIImage affs, NSError error) => {
+            //        ;
+            //    }));
+            //});
 #endif
 #if __ANDROID__
 

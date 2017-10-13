@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
 	<metadata>
 		<id>Xamarin.Plugin.ImageEdit</id>
-		<version>0.0.6-pre</version>
+		<version>0.1.0</version>
 		<title>Image Edit Plugin for Xamarin</title>
 		<authors>kamu</authors>
 		<owners>kamu</owners>
@@ -19,11 +19,16 @@
 		<tags>PCL Plugin Xamarin.Forms Xamarin.Android Xamarin.iOS Image Edit Resize Rotate Crop Scale Clip Bitmap jpeg png monochrome</tags>
 		<language>en-US</language>
 		<releaseNotes>
-		[NewFeature]
-		ToMonochrome ... Image color convert to monochrome.
-		[Enhanced]
-		Create ... new override that specify stream.
-		Resize ... new override that specify max length of long side.
+## Bugfix
+[iOS] ToJpeg quality parameter had been incorrect. (issue#6)
+
+## NewFeature
+GetNativeImage ... get platform image object. (issue#3)
+ToMonochrome ... Image color convert to monochrome.
+
+## Enhanced
+Create ... new override that specify stream.
+Resize ... new override that specify max length of long side.
 		</releaseNotes>
 
 		<dependencies>

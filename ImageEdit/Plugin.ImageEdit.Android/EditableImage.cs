@@ -150,5 +150,9 @@ namespace Plugin.ImageEdit
             Height = (int)_image.Height;
         }
 
+        public object GetNativeImage()
+        {
+            return _image;
+        }
     }
 }

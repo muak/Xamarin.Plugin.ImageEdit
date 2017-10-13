@@ -154,6 +154,11 @@ var g = pixel & 0x0000FF00 >> 8;  //Get G
 var b = pixel & 0x000000FF;       //Get B
 ```
 
+## GetNativeImage
+
+Get native image on platform. 
+if platform is iOS, return UIImage; otherwise return Bitmap.
+
 ## License
 
 MIT Licensed.

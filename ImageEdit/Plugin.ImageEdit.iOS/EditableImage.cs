@@ -188,7 +188,7 @@ namespace Plugin.ImageEdit
 
         public byte[] ToJpeg(float quality = 80)
         {
-            using (var data = _image.AsJPEG(quality)) {
+            using (var data = _image.AsJPEG(quality / 100f)) {
                 return data.ToArray();
             }
         }
@@ -262,6 +262,11 @@ namespace Plugin.ImageEdit
         {
             Width = (int)_image.CGImage.Width;
             Height = (int)_image.CGImage.Height;
+        }
+
+        public object GetNativeImage()
+        {
+            return _image;
         }
     }
 }

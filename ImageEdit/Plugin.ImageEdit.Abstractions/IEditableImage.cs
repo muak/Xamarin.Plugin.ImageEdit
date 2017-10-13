@@ -73,5 +73,11 @@ namespace Plugin.ImageEdit.Abstractions
         /// </summary>
         /// <returns>The ARGB pixels.</returns>
         int[] ToArgbPixels();
+
+        /// <summary>
+        /// Get native image. return UIImage on iOS, Bitmap on Android.
+        /// </summary>
+        /// <returns>The native image.</returns>
+        object GetNativeImage();
     }
 }
