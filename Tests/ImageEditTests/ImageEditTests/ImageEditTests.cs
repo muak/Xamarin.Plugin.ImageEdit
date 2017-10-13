@@ -38,6 +38,7 @@ namespace Tests
             ColorsData = UIImage.FromBundle("colors.png").AsPNG().ToArray();
             RectH = UIImage.FromBundle("recth.png").AsPNG().ToArray();
             RectV = UIImage.FromBundle("rectv.png").AsPNG().ToArray();
+
 #endif
 #if __ANDROID__
             PngData = Getbytes("pattern1");
@@ -352,12 +353,13 @@ namespace Tests
         private void SavePhoto(IEditableImage image)
         {
 #if __IOS__
-            var tmp = new UIImage(NSData.FromArray(image.ToPng()));
-            tmp.BeginInvokeOnMainThread(() => {
-                tmp.SaveToPhotosAlbum(new UIImage.SaveStatus((UIImage affs, NSError error) => {
-                    ;
-                }));
-            });
+            //On iOS11 following code crashed 
+            //var tmp = new UIImage(NSData.FromArray(image.ToPng()));
+            //tmp.BeginInvokeOnMainThread(() => {
+            //    tmp.SaveToPhotosAlbum(new UIImage.SaveStatus((UIImage affs, NSError error) => {
+            //        ;
+            //    }));
+            //});
 #endif
 #if __ANDROID__
 
