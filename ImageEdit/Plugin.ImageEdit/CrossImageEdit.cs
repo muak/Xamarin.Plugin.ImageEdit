@@ -28,7 +28,7 @@ namespace Plugin.ImageEdit
 
     static IImageEdit CreateImageEdit()
     {
-#if PORTABLE
+#if NETSTANDARD2_0
         return null;
 #else
         return new ImageEdit();
