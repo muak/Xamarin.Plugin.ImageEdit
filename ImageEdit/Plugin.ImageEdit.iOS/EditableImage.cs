@@ -36,6 +36,12 @@ namespace Plugin.ImageEdit
             UpdateSize();
         }
 
+        public EditableImage(UIImage image)
+        {
+            _image = image;
+            UpdateSize();
+        }
+
         public IEditableImage Resize(int width, int height)
         {
             int w;
